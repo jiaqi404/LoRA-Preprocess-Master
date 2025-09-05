@@ -47,6 +47,7 @@ Contributions are welcome!
 ## Acknowledgement
 
 - [Sun-Valley-ttk-theme](https://github.com/rdbende/Sun-Valley-ttk-theme) for Tkinter theme
-- [blip](https://huggingface.co/Salesforce/blip-image-captioning-base)
+- [blip](https://github.com/salesforce/BLIP)
+- [moondream](https://github.com/vikhyat/moondream)
 
 Thanks to their works on open source <3
