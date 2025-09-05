@@ -2,18 +2,6 @@ import os
 from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration
 
-# model_path = "model/blip-image-captioning-base"
-# os.makedirs(model_path, exist_ok=True)
-
-# processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base", cache_dir=model_path)
-# model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base", cache_dir=model_path)
-
-# raw_image = Image.open("dataset/input/img2.jpg").convert('RGB')
-# inputs = processor(raw_image, return_tensors="pt")
-
-# out = model.generate(**inputs)
-# print(processor.decode(out[0], skip_special_tokens=True))
-
 count = 0
 
 def caption_image(input_path, output_path, cache_dir="model/blip-image-captioning-base", trigger_word=""):
