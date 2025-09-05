@@ -1,0 +1,4 @@
+Pillow==11.3.0
+sv_ttk==2.6.1
+torch==2.7.1
+transformers==4.56.0
