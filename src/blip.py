@@ -4,7 +4,7 @@ from transformers import BlipProcessor, BlipForConditionalGeneration
 
 count = 0
 
-def caption_image(input_path, output_path, cache_dir="model/blip-image-captioning-base", trigger_word=""):
+def caption_image(input_path, output_path, cache_dir="", trigger_word=""):
     global count
     processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base", cache_dir=cache_dir)
     model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base", cache_dir=cache_dir)
@@ -28,4 +28,6 @@ def caption_image(input_path, output_path, cache_dir="model/blip-image-captionin
                 f.write(caption)
             
             count += 1
-            print(f"Processed {filename} -> {txt_filename}")
+            print(f"blip Processed {filename} -> {txt_filename}")
+
+    return "BLIP captioning completed."

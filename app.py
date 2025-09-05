@@ -4,6 +4,7 @@ import sv_ttk
 import os
 from src.preprocess import preprocess_image
 from src.blip import caption_image
+from src.moondream import caption_image as moondream_caption_image
 
 class ImageProcessingApp:
     def __init__(self, root):
@@ -122,7 +123,7 @@ class ImageProcessingApp:
 
         # Model selection
         ttk.Label(caption_frame, text="Model").grid(row=1, column=0, sticky=tk.W, pady=5)
-        self.model_type = ttk.Combobox(caption_frame, values=["BLIP (CPU Friendly)"])
+        self.model_type = ttk.Combobox(caption_frame, values=["BLIP (CPU Friendly)", "MoonDream (About 5GB VRAM)"], width=25)
         self.model_type.grid(row=1, column=1, sticky=tk.W, pady=5, padx=5)
         self.model_type.current(0)
 
@@ -198,13 +199,25 @@ class ImageProcessingApp:
         if enable_caption:
             self.log_message("\n=========== Start Captioning ===========")
             self.log_message(f"Model={self.model_type.get()}, Cache Dir={self.cache_dir.get()}, Trigger Word={self.trigger_word.get()}")
-            caption_image(
-                input_path=output_path, 
-                output_path=output_path, 
-                cache_dir=self.cache_dir.get() if self.cache_dir.get() else "model/", 
-                trigger_word=self.trigger_word.get()
-            )
-        self.log_message(f"\n=========== Processing completed! ===========")
+            if self.model_type.get() == "BLIP (CPU Friendly)":
+                result = caption_image(
+                    input_path=output_path, 
+                    output_path=output_path, 
+                    cache_dir=self.cache_dir.get() if self.cache_dir.get() else "model/", 
+                    trigger_word=self.trigger_word.get()
+                )
+                if result:
+                    self.log_message(result)
+            elif self.model_type.get() == "MoonDream (About 5GB VRAM)":
+                result = moondream_caption_image(
+                    input_path=output_path,
+                    output_path=output_path,
+                    cache_dir=self.cache_dir.get() if self.cache_dir.get() else "model/",
+                    trigger_word=self.trigger_word.get()
+                )
+                if result:
+                    self.log_message(result)
+        self.log_message(f"\n=========== Processing finished! ===========")
         self.log_message(f"Output path: {output_path}")
 
 
