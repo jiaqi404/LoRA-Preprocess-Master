@@ -13,33 +13,33 @@ class ImageProcessingApp:
         # Fix window size
         self.root.resizable(False, False)
         
-        # 创建主框架
+        # Create main frame
         self.main_frame = ttk.Frame(root, padding="10")
         self.main_frame.pack(fill=tk.BOTH, expand=True)
         
-        # 1. 路径输入区
+        # 1. Path input section
         self.create_path_section()
         
-        # 2. 图像预处理参数输入区
+        # 2. Image preprocessing parameters section
         self.create_preprocessing_section()
         
-        # 3. 图像标注参数输入区
+        # 3. Image captioning parameters section
         self.create_captioning_section()
 
-        # 4. 开始按钮和日志输出区
+        # 4. Start button and log output section
         self.create_action_section()
     
     def create_path_section(self):
         path_frame = ttk.LabelFrame(self.main_frame, text="Path", padding="10")
         path_frame.pack(fill=tk.X, pady=5)
         
-        # 输入路径
+        # Input path
         ttk.Label(path_frame, text="Input Path").grid(row=0, column=0, sticky=tk.W, pady=5)
         self.input_path = ttk.Entry(path_frame, width=40)
         self.input_path.grid(row=0, column=1, sticky=tk.W, pady=5, padx=5)
         ttk.Button(path_frame, text="Browse...", command=lambda: self.browse_folder(self.input_path)).grid(row=0, column=2, pady=5)
 
-        # 输出路径
+        # Output path
         ttk.Label(path_frame, text="Output Path").grid(row=1, column=0, sticky=tk.W, pady=5)
         self.output_path = ttk.Entry(path_frame, width=40)
         self.output_path.grid(row=1, column=1, sticky=tk.W, pady=5, padx=5)
@@ -141,11 +141,11 @@ class ImageProcessingApp:
         action_frame = ttk.Frame(self.main_frame)
         action_frame.pack(fill=tk.BOTH, expand=True, pady=5)
         
-        # 开始按钮
+        # Start button
         start_button = ttk.Button(action_frame, text="Start", command=self.start_processing, width=80)
         start_button.pack(pady=10)
         
-        # 日志输出区
+        # Log output area
         log_label = ttk.Label(action_frame, text="Console Log")
         log_label.pack(anchor=tk.W, pady=(5, 0))
         
@@ -167,11 +167,11 @@ class ImageProcessingApp:
         self.root.update()
         
     def start_processing(self):
-        # 获取所有参数
+        # Get all parameters
         input_path = self.input_path.get()
         output_path = self.output_path.get()
         
-        # 验证路径
+        # Validate paths
         if not input_path or not output_path:
             self.log_message("Error: Please type in input path and output path.")
             return
@@ -180,7 +180,7 @@ class ImageProcessingApp:
             self.log_message(f"Error: Input path does not exist - {input_path}")
             return
         
-        # 处理逻辑将在这里实现
+        # Processing logic implementation
         self.log_message(f"Input path: {input_path}")
         enable_preproc = self.enable_preproc_var.get()
         if enable_preproc:
@@ -210,6 +210,6 @@ class ImageProcessingApp:
 
 if __name__ == "__main__":
     root = tk.Tk()
-    sv_ttk.set_theme("dark")  # 设置主题
+    sv_ttk.set_theme("dark")  # Set theme
     app = ImageProcessingApp(root)
     root.mainloop()
