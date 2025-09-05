@@ -1,2 +1,4 @@
 model/
 dataset/
+__pycache__/
+
