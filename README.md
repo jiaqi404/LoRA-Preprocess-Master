@@ -2,6 +2,8 @@
 
 LoRA Preprocess Master is a simple GUI tool for one-click preprocessing and automatic captioning of LoRA model datasets.
 
+<img width="400" alt="LoRA Preprocess Master 2025_9_6 0_47_49" src="https://github.com/user-attachments/assets/b5a0ee89-0a81-4245-b3ef-4f2fe25c3319" />
+
 ## Features
 
 - Image preprocessing: resize and crop images
